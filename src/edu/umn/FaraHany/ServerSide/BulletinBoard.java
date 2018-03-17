@@ -21,7 +21,7 @@ public class BulletinBoard {
 
     public static String reply(int parentId, String title, String content) {
         int id = articles.size()+1;
-        if (!isElement(parentId-1)){
+        if (!isElement(parentId)){
             System.out.println(BulletinBoard.class.getName() + ": invalid reply id input");
             return(BulletinBoard.class.getName() + ": invalid reply id input");
         }
@@ -44,7 +44,7 @@ public class BulletinBoard {
     }
 
     public static String choose(int id) {
-        if (!isElement(id-1)){
+        if (!isElement(id)){
             System.out.println(BulletinBoard.class.getName() + ": invalid reply id input");
             return (BulletinBoard.class.getName() + ": invalid reply id input");
         }
