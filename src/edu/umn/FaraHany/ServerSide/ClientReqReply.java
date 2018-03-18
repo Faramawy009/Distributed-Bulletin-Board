@@ -13,8 +13,9 @@ public class ClientReqReply implements Runnable{
     }
 
     public int serverToLeaderHandler(String clientRequest) {
+        int id = -1;
         String coordinatorMsg =
-                ServerMain.myIp +";"+ ServerMain.myPort +"$"+ clientRequest;
+                ServerMain.myIp +";"+ ServerMain.myPort +"#"+ clientRequest;
         Socket clientSocket = null;
         try {
             clientSocket = new Socket(
@@ -29,25 +30,25 @@ public class ClientReqReply implements Runnable{
             DataInputStream in = new DataInputStream(inFromServer);
             String ans = in.readUTF();
             clientSocket.close();
-            int id = Integer.parseInt(ans);
-            return id;
+            id = Integer.parseInt(ans);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return id;
     }
 
 
     public void leaderToServersHandler(String clientRequest) {
         String serversMsg =
-                BulletinBoard.getSize() +"$"+ clientRequest;
+                BulletinBoard.getSize() +"#"+ clientRequest;
         ArrayList<Thread> arrThreads = new ArrayList<>();
         // broad cast to all ohter servers
-        for (int i = 1; i < ServersManager.numberOfReplicas.; i++)
+        for (int i = 1; i < ServersManager.numberOfReplicas; i++)
         {
             Thread T1 = new Thread(new TCPSenderThread(serversMsg,
                         ServersManager.addresses.get(i).getIp(),
-                    ServersManager.addresses.get(i).getServerListenPort());
+                    ServersManager.addresses.get(i).getServerListenPort()));
             T1.start();
             arrThreads.add(T1);
         }

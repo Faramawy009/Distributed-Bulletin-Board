@@ -1,5 +1,7 @@
 package edu.umn.FaraHany.ServerSide;
 
+import com.sun.security.ntlm.Server;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -17,14 +19,14 @@ public class LeaderRecv implements Runnable{
         String excludeIp = excludeAddress.split(";")[0];
         int excludePort = Integer.parseInt(excludeAddress.split(";")[1]);
         ArrayList<Thread> arrThreads = new ArrayList<>();
-        // broad cast to all ohter servers
+        // broadcast to all ohter servers
         for (int i = 1; i < ServersManager.numberOfReplicas; i++)
         {
             if(excludeIp.equals(ServersManager.addresses.get(i).getIp()) &&
                     excludePort == ServersManager.addresses.get(i).getServerListenPort()) {
                 continue;
             }
-            Thread T1 = new Thread(new TCPSenderThread(BulletinBoard.getSize()+"$"+query,
+            Thread T1 = new Thread(new TCPSenderThread(BulletinBoard.getSize()+"#"+query,
                     ServersManager.addresses.get(i).getIp(),
                     ServersManager.addresses.get(i).getServerListenPort()));
             T1.start();
@@ -33,10 +35,6 @@ public class LeaderRecv implements Runnable{
 
         for (int i = 0; i < arrThreads.size(); i++)
         {
-            if(excludeIp.equals(ServersManager.addresses.get(i).getIp()) &&
-                    excludePort == ServersManager.addresses.get(i).getServerListenPort()) {
-            continue;
-        }
             try {
                 arrThreads.get(i).join();
             } catch (InterruptedException e) {
@@ -57,22 +55,30 @@ public class LeaderRecv implements Runnable{
             } catch (Exception e){
                 e.printStackTrace();
             }
-            String query = request.split("$")[1];
+            String excludeAdd = request.split("#")[0];
+            String query = request.split("#")[1];
             String[] elements = query.split(";");
             switch(elements[0]){
                 case "post":
                     if(elements.length == 3) {
+                        ServersManager.leaderLock.lock();
                         BulletinBoard.post(elements[1], elements[2]);
+                        leaderToServersHandler(query,excludeAdd);
+                        ServersManager.leaderLock.unlock();
                         break;
                     }
                 case "reply":
                     if(elements.length == 4) {
+                        ServersManager.leaderLock.lock();
                         int parentId = Integer.parseInt(elements[1]);
                         BulletinBoard.reply(parentId,elements[2],elements[3]);
+                        leaderToServersHandler(query,excludeAdd);
+                        ServersManager.leaderLock.unlock();
                         break;
                     }
+                default:
+                    System.out.println(this.getClass().getName() + ": invalid input");
             }
-            ServersManager.leaderLock.lock();
 
         }
     }

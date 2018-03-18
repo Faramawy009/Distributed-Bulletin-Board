@@ -10,12 +10,12 @@ public class ServersManager {
     static int clientPortBase = 12340;
     static int serverPortBase = 23450;
     public static Mutex leaderLock;
-    public final static int numberOfReplicas = 5;
+    public final static int numberOfReplicas = 2;
     static {
         leaderLock = new Mutex();
         addresses = new ArrayList<>();
         for(int i=0; i<numberOfReplicas; i++) {
-            addresses.add(new ServerAddress("localhost",clientPortBase++,serverPortBase++));
+            addresses.add(new ServerAddress("localhost",clientPortBase+i,serverPortBase+i));
         }
     }
     static public String getLeaderIp() {return "localhost";}
