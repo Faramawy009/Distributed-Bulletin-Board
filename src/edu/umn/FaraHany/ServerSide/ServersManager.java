@@ -1,18 +1,26 @@
 package edu.umn.FaraHany.ServerSide;
 
+import sun.awt.Mutex;
+
 import java.util.ArrayList;
 import java.util.Random;
 
 public class ServersManager {
     static ArrayList<ServerAddress> addresses;
+    static int clientPortBase = 12340;
+    static int serverPortBase = 23450;
+    public static Mutex leaderLock;
+    public final static int numberOfReplicas = 5;
     static {
-        final int numberOfReplicas = 5;
-        int portBase = 12340;
+        leaderLock = new Mutex();
         addresses = new ArrayList<>();
         for(int i=0; i<numberOfReplicas; i++) {
-            addresses.add(new ServerAddress(portBase++,"localhost"));
+            addresses.add(new ServerAddress("localhost",clientPortBase++,serverPortBase++));
         }
     }
     static public String getLeaderIp() {return "localhost";}
-    static public int getLeaderPort() {return 12340;}
+    static public int getLeaderPort() {return serverPortBase;}
+    static public boolean isLeader(String ip, int port) {
+        return ip.equals("localhost") && port==serverPortBase;
+    }
 }

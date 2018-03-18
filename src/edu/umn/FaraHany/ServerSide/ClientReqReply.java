@@ -1,15 +1,70 @@
 package edu.umn.FaraHany.ServerSide;
 
+import com.sun.corba.se.impl.orbutil.concurrent.Mutex;
+
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ClientReqReply implements Runnable{
     private Socket clientSocket;
     public ClientReqReply(Socket clientSocket) {
         this.clientSocket = clientSocket;
     }
+
+    public int serverToLeaderHandler(String clientRequest) {
+        String coordinatorMsg =
+                ServerMain.myIp +";"+ ServerMain.myPort +"$"+ clientRequest;
+        Socket clientSocket = null;
+        try {
+            clientSocket = new Socket(
+                    ServersManager.getLeaderIp(),
+                    ServersManager.getLeaderPort());
+            OutputStream outToServer = clientSocket.getOutputStream();
+            DataOutputStream out = new DataOutputStream(outToServer);
+
+            out.writeUTF(coordinatorMsg);
+
+            InputStream inFromServer = clientSocket.getInputStream();
+            DataInputStream in = new DataInputStream(inFromServer);
+            String ans = in.readUTF();
+            clientSocket.close();
+            int id = Integer.parseInt(ans);
+            return id;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void leaderToServersHandler(String clientRequest) {
+        String serversMsg =
+                BulletinBoard.getSize() +"$"+ clientRequest;
+        ArrayList<Thread> arrThreads = new ArrayList<>();
+        // broad cast to all ohter servers
+        for (int i = 1; i < ServersManager.numberOfReplicas.; i++)
+        {
+            Thread T1 = new Thread(new TCPSenderThread(serversMsg,
+                        ServersManager.addresses.get(i).getIp(),
+                    ServersManager.addresses.get(i).getServerListenPort());
+            T1.start();
+            arrThreads.add(T1);
+        }
+
+        for (int i = 0; i < arrThreads.size(); i++)
+        {
+            try {
+                arrThreads.get(i).join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @Override
     public void run() {
+        int articleId = -1;
         DataInputStream in = null;
         try {
             in = new DataInputStream(clientSocket.getInputStream());
@@ -36,13 +91,42 @@ public class ClientReqReply implements Runnable{
                 }
             case "post":
                 if(elements.length == 3) {
-                    reply = BulletinBoard.post(elements[1], elements[2]);
+                    //If I am not the leader....
+                    if(!ServersManager.isLeader(
+                            ServerMain.myIp,
+                            ServerMain.myPort)) {
+                        articleId = serverToLeaderHandler(request);
+                        if(articleId==-1) {
+                            reply = (BulletinBoard.class.getName() + ": invalid parent id input");
+                        } else {
+                            reply = BulletinBoard.postWithId(articleId,elements[1],elements[2]);
+                        }
+                    } else{
+                        ServersManager.leaderLock.lock();
+                        reply = BulletinBoard.post(elements[1], elements[2]);
+                        leaderToServersHandler(request);
+                        ServersManager.leaderLock.unlock();
+                    }
                     break;
                 }
             case "reply":
                 if(elements.length == 4) {
                     int parentId = Integer.parseInt(elements[1]);
-                    reply = BulletinBoard.reply(parentId,elements[2],elements[3]);
+                    if(!ServersManager.isLeader(
+                            ServerMain.myIp,
+                            ServerMain.myPort)) {
+                        articleId = serverToLeaderHandler(request);
+                        if(articleId==-1) {
+                            reply = (BulletinBoard.class.getName() + ": invalid parent id input");
+                        } else {
+                            reply = BulletinBoard.replyWithId(articleId,parentId,elements[1],elements[2]);
+                        }
+                    } else {
+                        ServersManager.leaderLock.lock();
+                        reply = BulletinBoard.reply(parentId, elements[2], elements[3]);
+                        leaderToServersHandler(request);
+                        ServersManager.leaderLock.unlock();
+                    }
                     break;
                 }
             default:

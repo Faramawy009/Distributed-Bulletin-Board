@@ -1,15 +1,15 @@
 package edu.umn.FaraHany.ServerSide;
 
-public class ServerAddress implements Comparable<ServerAddress>{
-    private int port;
+public class ServerAddress{
     private String ip;
+    private int clientListenPort;
+    private int serverListenPort;
 
-    public int getPort() {
-        return port;
-    }
 
-    public void setPort(int port) {
-        this.port = port;
+    public ServerAddress(String ip, int clientListenPort,int serverListenPort) {
+        this.ip = ip;
+        this.clientListenPort = clientListenPort;
+        this.serverListenPort = serverListenPort;
     }
 
     public String getIp() {
@@ -20,14 +20,25 @@ public class ServerAddress implements Comparable<ServerAddress>{
         this.ip = ip;
     }
 
+    public int getClientListenPort() {
+        return clientListenPort;
+    }
 
-    public ServerAddress(int port, String ip) {
-        this.port = port;
-        this.ip = ip;
+    public void setClientListenPort(int clientListenPort) {
+        this.clientListenPort = clientListenPort;
+    }
+
+    public int getServerListenPort() {
+        return serverListenPort;
+    }
+
+    public void setServerListenPort(int serverListenPort) {
+        this.serverListenPort = serverListenPort;
     }
 
     @Override
-    public int compareTo(ServerAddress serverAddress) {
-        return port-serverAddress.port;
+    public boolean equals(Object o) {
+        ServerAddress other = (ServerAddress) o;
+        return this.ip.equals(other.ip) && this.serverListenPort==other.serverListenPort;
     }
 }
