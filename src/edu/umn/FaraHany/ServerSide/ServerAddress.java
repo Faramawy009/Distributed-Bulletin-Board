@@ -1,15 +1,33 @@
 package edu.umn.FaraHany.ServerSide;
 
-public class ServerAddress implements Comparable<ServerAddress>{
-    private int port;
+public class ServerAddress{
+    private int clientPort;
+    private int serverReadPort;
+    private int serverWritePort;
     private String ip;
 
-    public int getPort() {
-        return port;
+    public int getClientPort() {
+        return clientPort;
     }
 
-    public void setPort(int port) {
-        this.port = port;
+    public void setClientPort(int clientPort) {
+        this.clientPort = clientPort;
+    }
+
+    public int getServerReadPort() {
+        return serverReadPort;
+    }
+
+    public void setServerReadPort(int serverReadPort) {
+        this.serverReadPort = serverReadPort;
+    }
+
+    public int getServerWritePort() {
+        return serverWritePort;
+    }
+
+    public void setServerWritePort(int serverWritePort) {
+        this.serverWritePort = serverWritePort;
     }
 
     public String getIp() {
@@ -20,14 +38,10 @@ public class ServerAddress implements Comparable<ServerAddress>{
         this.ip = ip;
     }
 
-
-    public ServerAddress(int port, String ip) {
-        this.port = port;
+    public ServerAddress(String ip, int clientPort, int serverReadPort, int serverWritePort) {
+        this.clientPort = clientPort;
+        this.serverReadPort = serverReadPort;
+        this.serverWritePort = serverWritePort;
         this.ip = ip;
-    }
-
-    @Override
-    public int compareTo(ServerAddress serverAddress) {
-        return port-serverAddress.port;
     }
 }

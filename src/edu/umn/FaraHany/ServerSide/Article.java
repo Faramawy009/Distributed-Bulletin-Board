@@ -18,7 +18,19 @@ public class Article {
         this.parent = parent;
         this.title = title;
         this.content = content;
+        this.replies = new ArrayList<>();
     }
+    public Article(int id, int indentLevel, int parent, String title, String content, String replies) {
+        this.id = id;
+        this.indentLevel = indentLevel;
+        this.parent = parent;
+        this.title = title;
+        this.content = content;
+        this.replies = new ArrayList<>();
+        for (String s: replies.split(","))
+            this.replies.add(Integer.parseInt(s));
+    }
+
 
 //    public Article(int id, int parent, String title, String content) {
 //        this.id = id;

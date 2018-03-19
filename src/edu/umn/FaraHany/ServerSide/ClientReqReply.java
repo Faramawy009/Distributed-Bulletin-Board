@@ -54,7 +54,7 @@ public class ClientReqReply implements Runnable{
             DataOutputStream out = new DataOutputStream(outToServer);
 
             out.writeUTF("\n\nServer reply:\n"+
-                                "-------------\n" +reply+"-------------\n\n");
+                                "-------------\n" +reply+"\n-------------\n\n");
         } catch (IOException e) {
             e.printStackTrace();
         }
