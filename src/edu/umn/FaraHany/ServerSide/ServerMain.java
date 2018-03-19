@@ -15,10 +15,10 @@ public class ServerMain {
         myIp= sc.nextLine();
         out.print("\nEnter port for listening to clients: ");
         clientListeningPort = sc.nextInt();
+        out.print("\nEnter port for listening to reads: ");
+        serverReadPort = sc.nextInt();
         out.print("\nEnter port for listening to writes: ");
         serverWriterPort = sc.nextInt();
-        out.print("\nEnter port for listening to updates: ");
-        serverReadPort = sc.nextInt();
 
         Thread readListener = null;
         try {

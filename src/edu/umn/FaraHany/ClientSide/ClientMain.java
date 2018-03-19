@@ -26,18 +26,18 @@ public class ClientMain {
     public static void main (String atgs[]) {
         String serverip = "";
         int serverPort = -1;
-        out.print("Enter your ip: ");
+//        out.print("Enter your ip: ");
         Scanner sc = new Scanner(System.in);
-        String ip = sc.nextLine();
-        out.print("\nEnter your port: ");
-        int port = sc.nextInt();
+//        String ip = sc.nextLine();
+//        out.print("\nEnter your port: ");
+//        int port = sc.nextInt();
 
         String selection = "";
         while (true) {
             out.println("Please enter one of the following");
             out.println("connect;server_ip;server_port");
             out.println("end");
-            sc.nextLine();
+//            sc.nextLine();
             selection = sc.nextLine();
 
             String[] elements = selection.split(";");

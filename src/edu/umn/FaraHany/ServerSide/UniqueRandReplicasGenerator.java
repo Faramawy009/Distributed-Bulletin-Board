@@ -9,6 +9,7 @@ public class UniqueRandReplicasGenerator {
     private static ArrayList<ServerAddress> serverAddresses;
     private static ArrayList<Integer> indicesList;
     static {
+        serverAddresses = new ArrayList<>();
         serverAddresses.addAll(ServersManager.addresses);
         indicesList = new ArrayList<>();
         for(int i=0; i<ServersManager.numberOfReplicas; i++) {
@@ -39,7 +40,7 @@ public class UniqueRandReplicasGenerator {
                 returnAddresses.add(serverAddresses.get(indicesList.get(currentIndex)));
             }
             currentIndex++;
-            if(currentIndex<serverAddresses.size())
+            if(currentIndex>=serverAddresses.size())
             {
                 System.out.println("Out of bounds index in generating write replicas");
             }

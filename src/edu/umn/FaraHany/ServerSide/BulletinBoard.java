@@ -123,6 +123,7 @@ public class BulletinBoard {
         int remoteVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
         if(remoteVersion<= getSize())
             return;
+        clear();
         String articles = DB.split("\\(\\)")[1];
         for(String aritcle: articles.split("#")) {
             insert(aritcle);

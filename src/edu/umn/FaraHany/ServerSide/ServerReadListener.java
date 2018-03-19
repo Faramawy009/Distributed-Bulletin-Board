@@ -22,7 +22,7 @@ public class ServerReadListener implements Runnable {
                 DataInputStream in = null;
                 in = new DataInputStream(server.getInputStream());
                 request = in.readUTF();
-                System.out.println("Received this database " + request);
+                System.out.println("Received this request " + request);
                 OutputStream outToServer = server.getOutputStream();
                 DataOutputStream out = new DataOutputStream(outToServer);
                 out.writeUTF(BulletinBoard.buildDB());
