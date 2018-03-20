@@ -33,7 +33,7 @@ public class SendRecvThread implements Runnable {
             InputStream inFromServer = clientSocket.getInputStream();
             DataInputStream in = new DataInputStream(inFromServer);
             String response = in.readUTF();
-            DBs.add(index, response);
+            DBs.set(index, response);
             clientSocket.close();
         } catch(Exception e) {
             e.printStackTrace();

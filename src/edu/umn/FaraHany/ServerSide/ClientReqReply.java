@@ -30,17 +30,10 @@ public class ClientReqReply implements Runnable{
         String latestVersionDB = "";
         int highestVersion = 0;
         ArrayList<String> DBs;
+        ArrayList<Integer> versions;
         switch(elements[0]) {
             case "read":
-//                reply = BulletinBoard.read();
                 readReplicas = UniqueRandReplicasGenerator.generateReadReplicas(ServersManager.numReadReplicas);
-//                for(ServerAddress s: readReplicas){
-//                    String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
-//                    int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
-//                    if(currentVersion > highestVersion) {
-//                        latestVersionDB = currentDb;
-//                    }
-//                }
                 DBs = TcpCommunicate.concurrentSendRecv(readReplicas);
                 for (String DB : DBs) {
                     int  currentVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
@@ -55,13 +48,6 @@ public class ClientReqReply implements Runnable{
             case "choose":
                 if(elements.length == 2) {
                     readReplicas = UniqueRandReplicasGenerator.generateReadReplicas(ServersManager.numReadReplicas);
-//                    for(ServerAddress s: readReplicas){
-//                        String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
-//                        int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
-//                        if(currentVersion > highestVersion) {
-//                            latestVersionDB = currentDb;
-//                        }
-//                    }
                     DBs = TcpCommunicate.concurrentSendRecv(readReplicas);
                     for (String DB : DBs) {
                         int  currentVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
@@ -78,17 +64,11 @@ public class ClientReqReply implements Runnable{
             case "post":
                 if(elements.length == 3) {
                     writeReplicas = UniqueRandReplicasGenerator.generateWriteReplicas(ServersManager.numWriteReplicas-1);
-                    //TODO: parallelism?
-//                    for(ServerAddress s: writeReplicas){
-//                        String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
-//                        int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
-//                        if(currentVersion > highestVersion) {
-//                            latestVersionDB = currentDb;
-//                        }
-//                    }
+                    versions = new ArrayList<>(writeReplicas.size());
                     DBs = TcpCommunicate.concurrentSendRecv(writeReplicas);
                     for (String DB : DBs) {
                         int  currentVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
+                        versions.add(currentVersion);
                         if(currentVersion > highestVersion) {
                             latestVersionDB = DB;
                             highestVersion = currentVersion;
@@ -97,20 +77,20 @@ public class ClientReqReply implements Runnable{
                     if(highestVersion > BulletinBoard.getSize())
                         BulletinBoard.updateDB(latestVersionDB);
                     reply = BulletinBoard.post(elements[1], elements[2]);
-                    TcpCommunicate.broadCast(BulletinBoard.buildDB(),writeReplicas);
+                    for (int i=0; i<writeReplicas.size(); i++) {
+                        String msg = BulletinBoard.builDeltadDB(versions.get(i));
+                        Thread sender = new Thread(new TcpSenderThread(msg,
+                                writeReplicas.get(i).getIp(),
+                                writeReplicas.get(i).getServerWritePort()));
+                        sender.start();
+                    }
+//                    TcpCommunicate.broadCast(BulletinBoard.buildDB(),writeReplicas);
                     break;
                 }
             case "reply":
                 if(elements.length == 4) {
                     writeReplicas = UniqueRandReplicasGenerator.generateWriteReplicas(ServersManager.numWriteReplicas-1);
-//                    //TODO: parallelism?
-//                    for(ServerAddress s: writeReplicas){
-//                        String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
-//                        int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
-//                        if(currentVersion > highestVersion) {
-//                            latestVersionDB = currentDb;
-//                        }
-//                    }
+                    versions = new ArrayList<>(writeReplicas.size());
                     DBs = TcpCommunicate.concurrentSendRecv(writeReplicas);
                     for (String DB : DBs) {
                         int  currentVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
@@ -123,7 +103,14 @@ public class ClientReqReply implements Runnable{
                         BulletinBoard.updateDB(latestVersionDB);
                     int parentId = Integer.parseInt(elements[1]);
                     reply = BulletinBoard.reply(parentId,elements[2],elements[3]);
-                    TcpCommunicate.broadCast(BulletinBoard.buildDB(),writeReplicas);
+                    for (int i=0; i<writeReplicas.size(); i++) {
+                        String msg = BulletinBoard.builDeltadDB(versions.get(i));
+                        Thread sender = new Thread(new TcpSenderThread(msg,
+                                writeReplicas.get(i).getIp(),
+                                writeReplicas.get(i).getServerWritePort()));
+                        sender.start();
+                    }
+//                    TcpCommunicate.broadCast(BulletinBoard.buildDB(),writeReplicas);
                     break;
                 }
             default:

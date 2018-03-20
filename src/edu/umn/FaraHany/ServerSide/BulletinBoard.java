@@ -117,6 +117,24 @@ public class BulletinBoard {
         return DB.toString();
     }
 
+    public static String builDeltadDB(int startIndex) {
+        StringBuilder DB = new StringBuilder();
+        for(int i=startIndex; i<BulletinBoard.getSize(); i++) {
+            Article a = BulletinBoard.getArticles().get(i);
+            DB.append(a.getId()+";");
+            DB.append(a.getIndentLevel()+";");
+            DB.append(a.getParent()+";");
+            DB.append(a.getTitle()+";");
+            DB.append(a.getContent()+";");
+            int k=0;
+            for(k=0; k<a.getReplies().size(); k++) {
+                DB.append(a.getReplies().get(k)+",");
+            }
+            DB.append("#");
+        }
+        return DB.toString();
+    }
+
     public static void updateDB(String DB) {
         if(DB == null || DB.equals(""))
             return;
@@ -129,6 +147,16 @@ public class BulletinBoard {
         String [] separatedArticles = articles.split("#");
         int size = getSize();
         for(int i =size; i<separatedArticles.length; i++) {
+            insert(separatedArticles[i]);
+        }
+    }
+
+    public static void deltaUpdateDB(String delta) {
+        if(delta == null || delta.equals(""))
+            return;
+        String [] separatedArticles = delta.split("#");
+        int size = getSize();
+        for(int i =0; i<separatedArticles.length; i++) {
             insert(separatedArticles[i]);
         }
     }

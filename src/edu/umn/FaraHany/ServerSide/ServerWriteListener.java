@@ -24,7 +24,7 @@ public class ServerWriteListener implements Runnable {
                 request = in.readUTF();
                 System.out.println("Received this database " + request);
                 ServersManager.DbWriteLock.lock();
-                BulletinBoard.updateDB(request);
+                BulletinBoard.deltaUpdateDB(request);
                 ServersManager.DbWriteLock.unlock();
                 server.close();
             } catch (Exception e) {

@@ -37,6 +37,7 @@ public class TcpCommunicate {
         int n = addresses.size();
         Thread[] threads = new Thread[n];
         ArrayList<String> DBs = new ArrayList<>(n);
+        DBs.fi
         for (int i = 0; i< n; i++) {
             threads[i] = new Thread( new SendRecvThread(DBs,i, addresses.get(i).getIp(),
                     addresses.get(i).getServerReadPort()));
