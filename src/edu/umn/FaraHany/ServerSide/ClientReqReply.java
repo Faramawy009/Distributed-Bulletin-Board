@@ -29,15 +29,24 @@ public class ClientReqReply implements Runnable{
         ArrayList<ServerAddress> writeReplicas;
         String latestVersionDB = "";
         int highestVersion = 0;
+        ArrayList<String> DBs;
         switch(elements[0]) {
             case "read":
 //                reply = BulletinBoard.read();
                 readReplicas = UniqueRandReplicasGenerator.generateReadReplicas(ServersManager.numReadReplicas);
-                for(ServerAddress s: readReplicas){
-                    String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
-                    int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
+//                for(ServerAddress s: readReplicas){
+//                    String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
+//                    int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
+//                    if(currentVersion > highestVersion) {
+//                        latestVersionDB = currentDb;
+//                    }
+//                }
+                DBs = TcpCommunicate.concurrentSendRecv(readReplicas);
+                for (String DB : DBs) {
+                    int  currentVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
                     if(currentVersion > highestVersion) {
-                        latestVersionDB = currentDb;
+                        latestVersionDB = DB;
+                        highestVersion = currentVersion;
                     }
                 }
                 BulletinBoard.updateDB(latestVersionDB);
@@ -46,11 +55,19 @@ public class ClientReqReply implements Runnable{
             case "choose":
                 if(elements.length == 2) {
                     readReplicas = UniqueRandReplicasGenerator.generateReadReplicas(ServersManager.numReadReplicas);
-                    for(ServerAddress s: readReplicas){
-                        String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
-                        int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
+//                    for(ServerAddress s: readReplicas){
+//                        String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
+//                        int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
+//                        if(currentVersion > highestVersion) {
+//                            latestVersionDB = currentDb;
+//                        }
+//                    }
+                    DBs = TcpCommunicate.concurrentSendRecv(readReplicas);
+                    for (String DB : DBs) {
+                        int  currentVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
                         if(currentVersion > highestVersion) {
-                            latestVersionDB = currentDb;
+                            latestVersionDB = DB;
+                            highestVersion = currentVersion;
                         }
                     }
                     BulletinBoard.updateDB(latestVersionDB);
@@ -62,11 +79,19 @@ public class ClientReqReply implements Runnable{
                 if(elements.length == 3) {
                     writeReplicas = UniqueRandReplicasGenerator.generateWriteReplicas(ServersManager.numWriteReplicas-1);
                     //TODO: parallelism?
-                    for(ServerAddress s: writeReplicas){
-                        String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
-                        int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
+//                    for(ServerAddress s: writeReplicas){
+//                        String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
+//                        int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
+//                        if(currentVersion > highestVersion) {
+//                            latestVersionDB = currentDb;
+//                        }
+//                    }
+                    DBs = TcpCommunicate.concurrentSendRecv(writeReplicas);
+                    for (String DB : DBs) {
+                        int  currentVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
                         if(currentVersion > highestVersion) {
-                            latestVersionDB = currentDb;
+                            latestVersionDB = DB;
+                            highestVersion = currentVersion;
                         }
                     }
                     if(highestVersion > BulletinBoard.getSize())
@@ -78,12 +103,20 @@ public class ClientReqReply implements Runnable{
             case "reply":
                 if(elements.length == 4) {
                     writeReplicas = UniqueRandReplicasGenerator.generateWriteReplicas(ServersManager.numWriteReplicas-1);
-                    //TODO: parallelism?
-                    for(ServerAddress s: writeReplicas){
-                        String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
-                        int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
+//                    //TODO: parallelism?
+//                    for(ServerAddress s: writeReplicas){
+//                        String currentDb = TcpCommunicate.sendRecv("NONE",s.getIp(),s.getServerReadPort());
+//                        int  currentVersion = Integer.parseInt(currentDb.split("\\(\\)")[0]);
+//                        if(currentVersion > highestVersion) {
+//                            latestVersionDB = currentDb;
+//                        }
+//                    }
+                    DBs = TcpCommunicate.concurrentSendRecv(writeReplicas);
+                    for (String DB : DBs) {
+                        int  currentVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
                         if(currentVersion > highestVersion) {
-                            latestVersionDB = currentDb;
+                            latestVersionDB = DB;
+                            highestVersion = currentVersion;
                         }
                     }
                     if(highestVersion > BulletinBoard.getSize())

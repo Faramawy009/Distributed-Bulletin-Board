@@ -23,7 +23,7 @@ public class UniqueRandReplicasGenerator {
                 && ServerMain.serverWriterPort == other.getServerWritePort();
     }
     public static ArrayList<ServerAddress> generateReadReplicas(int n) {
-        ArrayList<ServerAddress> returnAddresses = new ArrayList<>();
+        ArrayList<ServerAddress> returnAddresses = new ArrayList<>(n);
         Collections.shuffle(indicesList);
         for(int i=0; i<n; i++) {
             returnAddresses.add(serverAddresses.get(indicesList.get(i)));
@@ -32,7 +32,7 @@ public class UniqueRandReplicasGenerator {
     }
 
     public static ArrayList<ServerAddress> generateWriteReplicas(int n) {
-        ArrayList<ServerAddress> returnAddresses = new ArrayList<>();
+        ArrayList<ServerAddress> returnAddresses = new ArrayList<>(n);
         Collections.shuffle(indicesList);
         int currentIndex = 0;
         while(returnAddresses.size()<n) {

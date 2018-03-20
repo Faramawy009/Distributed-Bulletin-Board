@@ -3,22 +3,30 @@ package edu.umn.FaraHany.ServerSide;
 import java.util.Scanner;
 
 import static java.lang.System.out;
+import static java.lang.System.setOut;
 
 public class ServerMain {
-    public static String myIp;
+    public static String myIp = "localhost";
     public static int clientListeningPort;
     public static int serverReadPort;
     public static int serverWriterPort;
     public static void main(String args[]) {
-        out.print("Enter server ip: ");
+//        out.print("Enter server ip: ");
+//        Scanner sc = new Scanner(System.in);
+//        myIp= sc.nextLine();
+//        out.print("\nEnter port for listening to clients: ");
+//        clientListeningPort = sc.nextInt();
+//        out.print("\nEnter port for listening to reads: ");
+//        serverReadPort = sc.nextInt();
+//        out.print("\nEnter port for listening to writes: ");
+//        serverWriterPort = sc.nextInt();
+        out.print("Enter server ID between 1 and "+ServersManager.numberOfReplicas);
+        out.print("DO NOT ENTER AN ALREADY IN USE ID: ");
         Scanner sc = new Scanner(System.in);
-        myIp= sc.nextLine();
-        out.print("\nEnter port for listening to clients: ");
-        clientListeningPort = sc.nextInt();
-        out.print("\nEnter port for listening to reads: ");
-        serverReadPort = sc.nextInt();
-        out.print("\nEnter port for listening to writes: ");
-        serverWriterPort = sc.nextInt();
+        int id = sc.nextInt();
+        clientListeningPort = ServersManager.clientPortBase+id-1;
+        serverReadPort = ServersManager.severReadPortBase+id-1;
+        serverWriterPort = ServersManager.serverWritePortBase+id-1;
 
         Thread readListener = null;
         try {

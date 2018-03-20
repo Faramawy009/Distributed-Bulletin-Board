@@ -33,4 +33,22 @@ public class TcpCommunicate {
         }
         return response;
     }
+    static  ArrayList<String> concurrentSendRecv (ArrayList<ServerAddress> addresses) {
+        int n = addresses.size();
+        Thread[] threads = new Thread[n];
+        ArrayList<String> DBs = new ArrayList<>(n);
+        for (int i = 0; i< n; i++) {
+            threads[i] = new Thread( new SendRecvThread(DBs,i, addresses.get(i).getIp(),
+                    addresses.get(i).getServerReadPort()));
+            threads[i].start();
+        }
+        for (int i = 0; i< n; i++) {
+            try {
+                threads[i].join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        return DBs;
+    }
 }

@@ -123,10 +123,13 @@ public class BulletinBoard {
         int remoteVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
         if(remoteVersion<= getSize())
             return;
-        clear();
+//        clear();
+
         String articles = DB.split("\\(\\)")[1];
-        for(String aritcle: articles.split("#")) {
-            insert(aritcle);
+        String [] separatedArticles = articles.split("#");
+        int size = getSize();
+        for(int i =size; i<separatedArticles.length; i++) {
+            insert(separatedArticles[i]);
         }
     }
 }

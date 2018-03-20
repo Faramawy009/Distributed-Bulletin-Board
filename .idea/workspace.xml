@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2179d5c1-10e4-4809-81c2-08ddd1b3a9b5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpCommunicate.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpSenderThread.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/SendRecvThread.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/umn/FaraHany/ClientSide/ClientMain.java" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ClientSide/ClientMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/BulletinBoard.java" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/BulletinBoard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ClientReqReply.java" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ClientReqReply.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerMain.java" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerReadListener.java" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerReadListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpCommunicate.java" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpCommunicate.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/UniqueRandReplicasGenerator.java" afterPath="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/UniqueRandReplicasGenerator.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -34,7 +30,7 @@
             <file leaf-file-name="ClientMain.java" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ClientSide/ClientMain.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="525">
+                  <state relative-caret-position="840">
                     <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
                     <folding />
                   </state>
@@ -44,8 +40,8 @@
             <file leaf-file-name="BulletinBoard.java" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/BulletinBoard.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="181">
-                    <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
+                  <state relative-caret-position="855">
+                    <caret line="131" column="41" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
                     <folding />
                   </state>
                 </provider>
@@ -54,8 +50,8 @@
             <file leaf-file-name="ServersManager.java" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServersManager.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="190">
-                    <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+                  <state relative-caret-position="336">
+                    <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="49" />
                     <folding>
                       <element signature="imports" expanded="true" />
                     </folding>
@@ -66,7 +62,7 @@
             <file leaf-file-name="Article.java" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/Article.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="1170">
+                  <state relative-caret-position="1872">
                     <caret line="102" column="1" selection-start-line="102" selection-start-column="1" selection-end-line="102" selection-end-column="1" />
                     <folding />
                   </state>
@@ -76,7 +72,7 @@
             <file leaf-file-name="ServerAddress.java" pinned="false" current-in-tab="false">
               <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerAddress.java">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="360">
+                  <state relative-caret-position="576">
                     <caret line="40" column="91" selection-start-line="40" selection-start-column="76" selection-end-line="40" selection-end-column="91" />
                     <folding>
                       <element signature="e#214#215#0" expanded="true" />
@@ -98,6 +94,18 @@
                 </provider>
               </entry>
             </file>
+            <file leaf-file-name="TcpCommunicate.java" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpCommunicate.java">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="567">
+                    <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+                    <folding>
+                      <element signature="imports" expanded="true" />
+                    </folding>
+                  </state>
+                </provider>
+              </entry>
+            </file>
           </leaf>
         </state>
       </content>
@@ -108,7 +116,7 @@
     <favorites_list name="BB_ReplicatedRepo" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5351459">
+    <splitter split-orientation="horizontal" split-proportion="0.6260214">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="ClientMain.java" pinned="false" current-in-tab="false">
@@ -121,11 +129,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ServerMain.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ServerMain.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerMain.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+                <state relative-caret-position="40">
+                  <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -133,11 +141,23 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ClientReqReply.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="ClientReqReply.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ClientReqReply.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="476">
-                  <caret line="82" column="95" selection-start-line="82" selection-start-column="95" selection-end-line="82" selection-end-column="99" />
+                <state relative-caret-position="247">
+                  <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SendRecvThread.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/SendRecvThread.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="414">
+                  <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -148,11 +168,9 @@
           <file leaf-file-name="ClientReqRecv.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ClientReqRecv.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
+                <state relative-caret-position="768">
                   <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -161,23 +179,11 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="TcpCommunicate.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpCommunicate.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="ServerReadListener.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerReadListener.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
+                <state relative-caret-position="511">
+                  <caret line="27" column="54" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="54" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -185,11 +191,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ServerWriteListener.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ServerWriteListener.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerWriteListener.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="390">
-                  <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+                <state relative-caret-position="624">
+                  <caret line="26" column="46" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="46" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -197,11 +203,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="UniqueRandReplicasGenerator.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="UniqueRandReplicasGenerator.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/UniqueRandReplicasGenerator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="540">
-                  <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+                <state relative-caret-position="-16">
+                  <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -245,13 +251,14 @@
         <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServersManager.java" />
         <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerWriteListener.java" />
         <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpSenderThread.java" />
-        <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpCommunicate.java" />
         <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ClientSide/ClientMain.java" />
-        <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/UniqueRandReplicasGenerator.java" />
         <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerReadListener.java" />
+        <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/BulletinBoard.java" />
+        <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpCommunicate.java" />
         <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ClientReqReply.java" />
         <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerMain.java" />
-        <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/BulletinBoard.java" />
+        <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/SendRecvThread.java" />
+        <option value="$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/UniqueRandReplicasGenerator.java" />
       </list>
     </option>
   </component>
@@ -262,10 +269,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1981" />
-    <option name="y" value="18" />
-    <option name="width" value="1859" />
-    <option name="height" value="1062" />
+    <option name="x" value="1979" />
+    <option name="y" value="24" />
+    <option name="width" value="1861" />
+    <option name="height" value="1176" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -293,32 +300,33 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BB_ReplicatedRepo" />
+              <option name="myItemId" value="project2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BB_ReplicatedRepo" />
+              <option name="myItemId" value="project2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BB_ReplicatedRepo" />
+              <option name="myItemId" value="project2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BB_ReplicatedRepo" />
+              <option name="myItemId" value="project2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BB_ReplicatedRepo" />
+              <option name="myItemId" value="project2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -336,11 +344,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BB_ReplicatedRepo" />
+              <option name="myItemId" value="project2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BB_ReplicatedRepo" />
+              <option name="myItemId" value="project2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -351,18 +359,14 @@
               <option name="myItemId" value="FaraHany" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ClientSide" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BB_ReplicatedRepo" />
+              <option name="myItemId" value="project2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="BB_ReplicatedRepo" />
+              <option name="myItemId" value="project2" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -372,7 +376,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -698,7 +701,7 @@
     <option name="totallyTimeSpent" value="32352000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1981" y="18" width="1859" height="1062" extended-state="6" />
+    <frame x="1979" y="24" width="1861" height="1176" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -706,14 +709,14 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30036297" sideWeight="0.5018807" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2982811" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30036297" sideWeight="0.4981193" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18881118" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1450833" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -738,20 +741,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerWriteListener.java</url>
-          <line>21</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerReadListener.java</url>
-          <line>21</line>
-          <properties />
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="10" />
     </breakpoint-manager>
     <watches-manager />
@@ -761,29 +750,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="40" column="91" selection-start-line="40" selection-start-column="76" selection-end-line="40" selection-end-column="91" />
-          <folding>
-            <element signature="e#214#215#0" expanded="true" />
-            <element signature="e#247#248#0" expanded="true" />
-            <element signature="e#296#297#0" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#378#379#0" expanded="true" />
-            <element signature="e#415#416#0" expanded="true" />
-            <element signature="e#472#473#0" expanded="true" />
-            <element signature="e#524#525#0" expanded="true" />
-            <element signature="e#563#564#0" expanded="true" />
-            <element signature="e#601#602#0" expanded="true" />
-            <element signature="e#660#661#0" expanded="true" />
-            <element signature="e#714#715#0" expanded="true" />
-            <element signature="e#743#744#0" expanded="true" />
-            <element signature="e#768#769#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/Client.java" />
     <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/RequestsReceiver.java" />
     <entry file="file://$PROJECT_DIR$/BulletinBoardRepo.iml">
@@ -838,9 +804,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -911,9 +875,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1022,7 +984,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerAddress.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="576">
           <caret line="40" column="91" selection-start-line="40" selection-start-column="76" selection-end-line="40" selection-end-column="91" />
           <folding>
             <element signature="e#214#215#0" expanded="true" />
@@ -1046,7 +1008,7 @@
     <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/UniqueRandNumGenerator.java" />
     <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/Article.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
+        <state relative-caret-position="1872">
           <caret line="102" column="1" selection-start-line="102" selection-start-column="1" selection-end-line="102" selection-end-column="1" />
           <folding />
         </state>
@@ -1054,11 +1016,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ClientReqRecv.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
+        <state relative-caret-position="768">
           <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1072,20 +1032,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpCommunicate.java">
+    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/BulletinBoard.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="55" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="855">
+          <caret line="131" column="41" selection-start-line="131" selection-start-column="41" selection-end-line="131" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/UniqueRandReplicasGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerWriteListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
+        <state relative-caret-position="624">
+          <caret line="26" column="46" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1094,38 +1052,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerReadListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="57" selection-start-line="24" selection-start-column="57" selection-end-line="24" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerWriteListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ClientReqReply.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="82" column="95" selection-start-line="82" selection-start-column="95" selection-end-line="82" selection-end-column="99" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServersManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="41" selection-start-line="10" selection-start-column="41" selection-end-line="10" selection-end-column="41" />
+        <state relative-caret-position="511">
+          <caret line="27" column="54" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1134,19 +1062,61 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+        <state relative-caret-position="40">
+          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/BulletinBoard.java">
+    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/SendRecvThread.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="83" column="41" selection-start-line="83" selection-start-column="41" selection-end-line="83" selection-end-column="41" />
-          <folding />
+        <state relative-caret-position="414">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ServersManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="15" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/ClientReqReply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="79" column="0" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/TcpCommunicate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/edu/umn/FaraHany/ServerSide/UniqueRandReplicasGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
