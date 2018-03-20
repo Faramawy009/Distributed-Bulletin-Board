@@ -32,13 +32,6 @@ public class Article {
     }
 
 
-//    public Article(int id, int parent, String title, String content) {
-//        this.id = id;
-//        this.parent = parent;
-//        this.title = title;
-//        this.content = content;
-//    }
-
     public int getIndentLevel() {
         return indentLevel;
     }

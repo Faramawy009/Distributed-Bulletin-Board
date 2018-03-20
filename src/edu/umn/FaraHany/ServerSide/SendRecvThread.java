@@ -8,15 +8,12 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
-/**
- * Created by mouba005 on 3/20/18.
- */
 public class SendRecvThread implements Runnable {
-    ArrayList<String> DBs;
+    String [] DBs;
     int index;
     String ip;
     int port;
-    SendRecvThread(ArrayList<String> DBs, int index,
+    SendRecvThread(String [] DBs, int index,
             String ip, int port){
         this.DBs = DBs;
         this.index = index;
@@ -33,7 +30,7 @@ public class SendRecvThread implements Runnable {
             InputStream inFromServer = clientSocket.getInputStream();
             DataInputStream in = new DataInputStream(inFromServer);
             String response = in.readUTF();
-            DBs.set(index, response);
+            DBs[index] = response;
             clientSocket.close();
         } catch(Exception e) {
             e.printStackTrace();

@@ -29,7 +29,7 @@ public class ClientReqReply implements Runnable{
         ArrayList<ServerAddress> writeReplicas;
         String latestVersionDB = "";
         int highestVersion = 0;
-        ArrayList<String> DBs;
+        String [] DBs;
         ArrayList<Integer> versions;
         switch(elements[0]) {
             case "read":
@@ -68,11 +68,11 @@ public class ClientReqReply implements Runnable{
                     DBs = TcpCommunicate.concurrentSendRecv(writeReplicas);
                     for (String DB : DBs) {
                         int  currentVersion = Integer.parseInt(DB.split("\\(\\)")[0]);
-                        versions.add(currentVersion);
                         if(currentVersion > highestVersion) {
                             latestVersionDB = DB;
                             highestVersion = currentVersion;
                         }
+                        versions.add(currentVersion);
                     }
                     if(highestVersion > BulletinBoard.getSize())
                         BulletinBoard.updateDB(latestVersionDB);
@@ -84,7 +84,6 @@ public class ClientReqReply implements Runnable{
                                 writeReplicas.get(i).getServerWritePort()));
                         sender.start();
                     }
-//                    TcpCommunicate.broadCast(BulletinBoard.buildDB(),writeReplicas);
                     break;
                 }
             case "reply":
@@ -98,6 +97,7 @@ public class ClientReqReply implements Runnable{
                             latestVersionDB = DB;
                             highestVersion = currentVersion;
                         }
+                        versions.add(currentVersion);
                     }
                     if(highestVersion > BulletinBoard.getSize())
                         BulletinBoard.updateDB(latestVersionDB);
@@ -110,7 +110,6 @@ public class ClientReqReply implements Runnable{
                                 writeReplicas.get(i).getServerWritePort()));
                         sender.start();
                     }
-//                    TcpCommunicate.broadCast(BulletinBoard.buildDB(),writeReplicas);
                     break;
                 }
             default:

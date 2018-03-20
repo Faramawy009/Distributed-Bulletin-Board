@@ -11,17 +11,8 @@ public class ServerMain {
     public static int serverReadPort;
     public static int serverWriterPort;
     public static void main(String args[]) {
-//        out.print("Enter server ip: ");
-//        Scanner sc = new Scanner(System.in);
-//        myIp= sc.nextLine();
-//        out.print("\nEnter port for listening to clients: ");
-//        clientListeningPort = sc.nextInt();
-//        out.print("\nEnter port for listening to reads: ");
-//        serverReadPort = sc.nextInt();
-//        out.print("\nEnter port for listening to writes: ");
-//        serverWriterPort = sc.nextInt();
         out.print("Enter server ID between 1 and "+ServersManager.numberOfReplicas);
-        out.print("DO NOT ENTER AN ALREADY IN USE ID: ");
+        out.print("  DO NOT ENTER AN ALREADY IN USE ID: ");
         Scanner sc = new Scanner(System.in);
         int id = sc.nextInt();
         clientListeningPort = ServersManager.clientPortBase+id-1;

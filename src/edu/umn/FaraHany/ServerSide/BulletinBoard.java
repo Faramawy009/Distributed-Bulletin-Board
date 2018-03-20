@@ -99,7 +99,7 @@ public class BulletinBoard {
     }
 
     public static String buildDB() {
-        StringBuilder DB = new StringBuilder();
+        StringBuilder DB = new StringBuilder("");
         DB.append(getSize()+"()");
         for(int i=0; i<BulletinBoard.getSize(); i++) {
             Article a = BulletinBoard.getArticles().get(i);
@@ -118,7 +118,7 @@ public class BulletinBoard {
     }
 
     public static String builDeltadDB(int startIndex) {
-        StringBuilder DB = new StringBuilder();
+        StringBuilder DB = new StringBuilder("");
         for(int i=startIndex; i<BulletinBoard.getSize(); i++) {
             Article a = BulletinBoard.getArticles().get(i);
             DB.append(a.getId()+";");
