@@ -10,8 +10,6 @@ public class Article {
     private String content;
     private ArrayList<Integer> replies;
 
-
-
     public Article(int id, int indentLevel, int parent, String title, String content) {
         this.id = id;
         this.indentLevel = indentLevel;
@@ -30,14 +28,6 @@ public class Article {
         for (String s: replies.split(","))
             this.replies.add(Integer.parseInt(s));
     }
-
-
-//    public Article(int id, int parent, String title, String content) {
-//        this.id = id;
-//        this.parent = parent;
-//        this.title = title;
-//        this.content = content;
-//    }
 
     public int getIndentLevel() {
         return indentLevel;

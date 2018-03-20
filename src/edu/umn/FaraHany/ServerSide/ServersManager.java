@@ -13,7 +13,7 @@ public class ServersManager {
     public static Mutex leaderLock;
     public static String leaderIp;
     public static int leaderPort;
-    public final static int numberOfReplicas = 4;
+    public final static int numberOfReplicas = 5;
     public static boolean isLeader;
     static {
         isLeader = false;

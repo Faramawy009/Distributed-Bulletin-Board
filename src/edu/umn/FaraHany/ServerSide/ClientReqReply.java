@@ -136,8 +136,6 @@ public class ClientReqReply implements Runnable{
                 out.println(this.getClass().getName() + ": invalid input");
                 reply = (this.getClass().getName() + ": invalid input");
         }
-//        String msg = reply.split(": ")[1] + "#" + request;
-//        TcpCommunicate.broadcast(ServerMain.myIp, ServerMain.myPort, msg);
         try {
             OutputStream outToServer = clientSocket.getOutputStream();
             DataOutputStream out = new DataOutputStream(outToServer);

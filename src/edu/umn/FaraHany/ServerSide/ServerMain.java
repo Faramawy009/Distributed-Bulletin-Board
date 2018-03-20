@@ -5,20 +5,18 @@ import java.util.Scanner;
 import static java.lang.System.out;
 
 public class ServerMain {
-    public static String myIp;
+    public static String myIp = "localhost";
     public static int clientListeningPort;
     public static int myPort;
     public static int myLeaderPort;
     public static void main(String args[]) {
-        out.print("Enter server ip: ");
+        out.print("Enter server ID between 1 and "+ServersManager.numberOfReplicas);
+        out.print("  DO NOT ENTER AN ALREADY IN USE ID: ");
         Scanner sc = new Scanner(System.in);
-        myIp= sc.nextLine();
-        out.print("\nEnter port for listening to clients: ");
-        clientListeningPort = sc.nextInt();
-        out.print("\nEnter port for listening to servers: ");
-        myPort = sc.nextInt();
-        out.print("\nEnter port for linstening when you are the leader: ");
-        myLeaderPort = sc.nextInt();
+        int id = sc.nextInt();
+        clientListeningPort = ServersManager.clientPortBase+id-1;
+        myPort = ServersManager.serverPortBase+id-1;
+        myLeaderPort = ServersManager.leaderPortBase+id-1;
 
         if(ServersManager.isLeader(myIp, myLeaderPort)) {
             ServersManager.isLeader = true; }

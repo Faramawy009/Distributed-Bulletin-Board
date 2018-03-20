@@ -26,18 +26,12 @@ public class ClientMain {
     public static void main (String atgs[]) {
         String serverip = "";
         int serverPort = -1;
-//        out.print("Enter server ip: ");
         Scanner sc = new Scanner(System.in);
-//        String ip = sc.nextLine();
-//        out.print("\nEnter server port: ");
-//        int port = sc.nextInt();
-
         String selection = "";
         while (true) {
             out.println("Please enter one of the following");
             out.println("connect;server_ip;server_port");
             out.println("end");
-//            sc.nextLine();
             selection = sc.nextLine();
 
             String[] elements = selection.split(";");
@@ -65,14 +59,17 @@ public class ClientMain {
                 out.println("post;title;content");
                 out.println("reply;id;title;content");
                 request = sc.nextLine();
+                long start = System.currentTimeMillis();
                 String[] reqElements = request.split(";");
                 if (reqElements[0].equals("choose") || reqElements[0].equals("read") || reqElements[0].equals("post")
                         || reqElements[0].equals("reply")) {
                     try {
-                        System.out.println(contactServer(request, serverip, serverPort));
+                        System.out.print(contactServer(request, serverip, serverPort));
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    long end = System.currentTimeMillis();
+                    System.out.println("Time consumed: "+(end-start)+ " MilliSeconds\n\n");
                 } else if (reqElements[0].equals("disconnect")) {
                     continue;
                 } else {
@@ -81,47 +78,4 @@ public class ClientMain {
             }
         }
     }
-
-
-//
-//        String request = sc.nextLine();
-//        String[] elements = request.split(";");
-//        switch (elements[0]) {
-//            case("connect"):
-//                serverip = elements[1];
-//                serverPort = Integer.parseInt(elements[2]);
-//                break;
-//            case("disconnect"):
-//                serverip = "";
-//                serverPort = -1;
-//                break;
-//            case("choose"):
-//            case("read"):
-//            case("post"):
-//            case("reply"):
-//                out.println("processing your request...");
-//                Socket clientSocket = null;
-//
-//                try {
-//                    clientSocket = new Socket(serverip, serverPort);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                DataOutputStream outToServer = null;
-//                try {
-//                    outToServer = new DataOutputStream(clientSocket.getOutputStream());
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                try {
-//                    outToServer.writeBytes(request);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-//                modifiedSentence = inFromServer.readLine();
-//                out.println("FROM SERVER: " + modifiedSentence);
-//                clientSocket.close();
-//    }
-//    }
 }
