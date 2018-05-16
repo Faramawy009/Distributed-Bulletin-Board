@@ -6,6 +6,9 @@ On the other hand, when a server receives a read request, the server compares it
 The ratio 4:2 balances the trade-off between fast reads and fast write throughput. It allows for a reasonable write throughput and very fast read throughput. Below is the average runtime of the 4 operations the client can run.
 
 ## Run Time
+
 Read: 5 ms(Grows as database grows!)
+
 Choose: 3 ms
+
 Post/Reply: 8 ms
