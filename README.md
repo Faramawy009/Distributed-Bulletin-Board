@@ -6,9 +6,15 @@ Note: All these measurements changed by non trivial amount, but the average was 
 ## Running The Program
 
 This project was developed using Intellij IDEA. To run any of the 3 versions, follow the steps below:
+
 1- Open the project using Intellij IDE
+
 2- Run the following file 5 times with 5 different server ID’s ranging from 1 to 5: src/edu/umn/FaraHany/ServerSide/ServerMain
+
 3- Once the server is up, it will print the port on which it’s listening
+
 4- Run the following file to start a client : src/edu/umn/FaraHany/ClientSide/ClientMain
+
 5- Use “localhost” when asked for the server ip
+
 6- Use the port number from the server prompt to connect
