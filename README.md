@@ -1,1 +1,2 @@
-Bulletin Board
+The purpose of this project is to design a Bulletin Board distributed system that allows clients to connect, post, reply and read on any server in the system. The system was implemented 3 times using 3 different consistency protocols; Sequential Consistency using Primary-Backup protocol, Quorum Consistency, and Read-your-Write Consistency. For all designs, the system consists if 5 servers. In each branch of this repo is a detailed description of each implementation with the run time of each case.
+Note: All these measurements changed by non trivial amount, but the average was taken over a 100 test, switching replica also affected these numbers.
